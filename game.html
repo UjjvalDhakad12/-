@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            width: 300px;
+        }
+
+        .head {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .buy p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .ticket {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .num {
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>Your lottery number is between 1 and 5</p>
+        <h1 class="head">Lottery Game</h1>
+        <div class="buy">
+            <button onclick="buyTicket()" class="ticket">Buy a ticket</button>
+            <br />
+            <input id="ticketNumber" class="num" readonly />
+            <p>Your ticket number</p>
+        </div>
+    </div>
+
+    <script>
+        let ticketNumber = null;
+
+        // Function to generate a ticket number and then check for win or lose
+        function buyTicket() {
+            // Generate a random ticket number between 1 and 5 for the user
+            ticketNumber = Math.floor(Math.random() * 5) + 1;
+            document.getElementById("ticketNumber").value = ticketNumber;
+
+            // Ask the user for their guess through a prompt
+            const userGuess = parseInt(prompt("Enter a number between 1 and 5:"), 10);
+
+            // Validate the user's input
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 5) {
+                alert("Please enter a valid number between 1 and 5.");
+            } else {
+                // Check if the user's guess matches the ticket number
+                if (userGuess === ticketNumber) {
+                    alert("You win!");
+                } else {
+                    alert("Better luck next time!");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
