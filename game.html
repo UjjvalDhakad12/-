@@ -80,26 +80,42 @@
     <script>
         let ticketNumber = null;
 
-        // Function to generate a ticket number and then check for win or lose
         function buyTicket() {
-            // Generate a random ticket number between 1 and 5 for the user
+            // टिकट नंबर जेनरेट करना और दिखाना
             ticketNumber = Math.floor(Math.random() * 5) + 1;
             document.getElementById("ticketNumber").value = ticketNumber;
 
-            // Ask the user for their guess through a prompt
-            const userGuess = parseInt(prompt("Enter a number between 1 and 5:"), 10);
+            // 3 सेकंड की देरी के बाद उपयोगकर्ता से टिकट नंबर दर्ज करने के लिए पूछना
+            setTimeout(() => {
+                // उपयोगकर्ता से टिकट नंबर दर्ज करने के लिए `prompt` का उपयोग करना
+                const userInput = parseInt(prompt("Enter your ticket number:"), 10);
 
-            // Validate the user's input
-            if (isNaN(userGuess) || userGuess < 1 || userGuess > 5) {
-                alert("Please enter a valid number between 1 and 5.");
-            } else {
-                // Check if the user's guess matches the ticket number
-                if (userGuess === ticketNumber) {
+                // यदि उपयोगकर्ता का इनपुट मान्य नहीं है
+                if (isNaN(userInput)) {
+                    alert("Please enter a valid number.");
+                    return;
+                }
+
+                // एक अलग लॉटरी नंबर जेनरेट करना
+                const lotteryNumber = Math.floor(Math.random() * 5) + 1;
+                console.log("Lottery Number:", lotteryNumber);
+
+                // चेक करना कि उपयोगकर्ता का टिकट नंबर लॉटरी नंबर के बराबर है या नहीं
+                if (userInput === ticketNumber && ticketNumber === lotteryNumber) {
                     alert("You win!");
                 } else {
                     alert("Better luck next time!");
                 }
-            }
+
+                // गेम रीसेट करना
+                resetGame();
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+
+        function resetGame() {
+            // टिकट नंबर को रीसेट करना
+            document.getElementById("ticketNumber").value = '';
+            ticketNumber = null;
         }
     </script>
 </body>
