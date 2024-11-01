@@ -238,3 +238,11 @@ hr {
 #color{
     background-color: #333; 
 }
+
+a{
+    text-decoration: none;
+}
+.gameing{
+    color:#ddd;
+    font-weight: bolder;
+}
